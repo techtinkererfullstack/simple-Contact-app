@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#F0F0DB</color>
+    <color name="card">#30364F</color>
+    <color name="text">#E1D9BC</color>
+    <color name="button">#ACBAC4</color>
+</resources>

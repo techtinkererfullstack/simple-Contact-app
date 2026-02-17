@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/rounded_corners.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Background Color -->
+    <solid android:color="@color/card" />
+
+    <!-- Corner Radius -->
+    <corners android:radius="16dp" />
+
+    <!-- Optional: Border -->
+    <stroke android:width="2dp" android:color="@color/text" />
+</shape>
