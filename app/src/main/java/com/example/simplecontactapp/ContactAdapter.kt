@@ -3,15 +3,20 @@ package com.example.simplecontactapp
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.simplecontactapp.databinding.ItemNoteBinding
+import com.example.simplecontactapp.databinding.ItemContactBinding
 
-class NoteAdapter(private val list: List<Contact>) : RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val binding: ItemNoteBinding) : RecyclerView.ViewHolder(binding.root)
+class ContactAdapter(
+    private val list: List<Contact>,
+    private val onEdit:(Contact)->Unit,
+    private val onDelete:(Contact)->Unit
+) : RecyclerView.Adapter<ContactAdapter.ViewHolder>() {
+
+class ViewHolder(val binding: ItemContactBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val binding = ItemNoteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemContactBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -20,6 +25,16 @@ class NoteAdapter(private val list: List<Contact>) : RecyclerView.Adapter<NoteAd
 
         holder.binding.name.text = contact.name
         holder.binding.mobile.text = contact.mobile
+
+        holder.binding.edit.setOnClickListener {
+            onEdit(contact)
+        }
+        holder.binding.delete.setOnClickListener {
+            onDelete(contact)
+        }
+
+
+
     }
 
     override fun getItemCount(): Int = list.size

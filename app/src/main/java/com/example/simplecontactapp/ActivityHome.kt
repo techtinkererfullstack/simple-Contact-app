@@ -44,8 +44,19 @@ class ActivityHome : AppCompatActivity() {
     }
 
     private fun loadData() {
-        val list = db.noteDao().getAllNotes()
-        val adapter = NoteAdapter(list)
+        val list = db.contactDao().getAllContact()
+        val adapter = ContactAdapter(list,
+            onEdit = { contact ->
+                val intent = Intent(this@ActivityHome, AddActivity::class.java)
+                intent.putExtra("id", contact.id)
+                intent.putExtra("name",contact.name)
+                intent.putExtra("mobile",contact.mobile)
+                startActivity(intent)
+        },
+            onDelete = {contact ->
+                db.contactDao().delete(contact)
+                loadData()
+        })
         binding.recyclerView.adapter = adapter
 
     }
